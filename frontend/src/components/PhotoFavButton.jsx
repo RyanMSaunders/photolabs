@@ -6,10 +6,10 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton() {
 
 
-  const [selected, setSelected] = useState("on")
+  const [selected, setSelected] = useState(false)
 
   function handleClick() {
-    setSelected(selected === "" ? "on" : "")
+    setSelected((prevSelected) => !prevSelected)
   }
 
   return (
