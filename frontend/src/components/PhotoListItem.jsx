@@ -10,12 +10,13 @@ const PhotoListItem = (props) => {
   // props = sampleDataForPhotoListItem;
 
   return (
-    <article>
-      <img src={props.imageSource} alt="Photo" />
-      <img src={props.profile} alt="Profile photo" />
-      <p>{props.username}</p>
-      <p>{props.location.city}, {props.location.country}</p>
-      
+    <article className="photo-list__item">
+      <img src={props.photo.imageSource} alt="Photo" className="photo-list__image"/>
+      <img src={props.photo.profile} alt="Profile photo" className="photo-list__user-profile"/>
+      <div className="photo-list__user-details">
+        <p className="photo-list__user-info">{props.photo.username}</p>
+        <p className="photo-list__user-location">{props.photo.location.city}, {props.photo.location.country}</p>
+      </div>
 
     </article>
 
