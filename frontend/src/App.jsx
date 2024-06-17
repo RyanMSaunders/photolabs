@@ -20,7 +20,7 @@ const App = () => {
     <div className="App">
       <PhotoListItem
         key={sampleDataForPhotoListItem.id}
-        {...sampleDataForPhotoListItem}
+        photo={sampleDataForPhotoListItem}
       />
     </div>
   );
