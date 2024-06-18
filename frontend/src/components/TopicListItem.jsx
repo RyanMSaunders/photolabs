@@ -8,12 +8,13 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = () => {
+const TopicListItem = (props) => {
   return (
-    <div className="topic-list__item">
-      {/* Insert React */}
+    <div className="topic-list__item top-nav-bar__topic-list">
+      <span>{props.topicItem.title}</span>
     </div>
   );
+
 };
 
 export default TopicListItem;
