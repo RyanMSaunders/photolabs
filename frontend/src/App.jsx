@@ -13,7 +13,7 @@ const App = () => {
 
   const [selected, toggleSelectedPhoto] = useToggle(false);
   
-  const handleClick = (photoId) => {
+  const toggleFavourite = (photoId) => {
     toggleSelectedPhoto(photoId);
   }
 
@@ -23,7 +23,7 @@ const App = () => {
       topics={topics}
       photos={photos}
       selected={selected}
-      handleClick={handleClick}
+      toggleFavourite={toggleFavourite}
       />
       
     </div>

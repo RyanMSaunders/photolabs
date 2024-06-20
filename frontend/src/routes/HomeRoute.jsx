@@ -8,12 +8,15 @@ const HomeRoute = (props) => {
     <div className="home-route">
       {/* Insert React */}
       <TopNavigation 
-      topics={props.topics}/>
+      topics={props.topics}
+      selected={props.selected}
+      />
+      
       <PhotoList 
       photos={props.photos}
-      // useToggle={[props.selected, props.handleClick]}
+      // useToggle={[props.selected, props.toggleFavourite]}
       selected={props.selected}
-      handleClick={props.handleClick}
+      toggleFavourite={props.toggleFavourite}
       />
     </div>
   );

@@ -17,9 +17,9 @@ const PhotoList = (props) => {
       <PhotoListItem
         key={photoData.id}
         photo={photoData}
-        // useToggle={[props.selected, props.handleClick]}
+        // useToggle={[props.selected, props.toggleFavourite]}
         selected={props.selected}
-        handleClick={props.handleClick}
+        toggleFavourite={props.toggleFavourite}
       />
       ))}
     </ul>
