@@ -29,7 +29,7 @@ const App = () => {
 
 
 
-  console.log('modalState', modalState);
+  // console.log('modalState', modalState);
 
   return (
     <div className="App">
@@ -41,7 +41,7 @@ const App = () => {
       toggleModal={toggleModal}
       />
 
-      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal}/>}
+      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal} photos={photos}/>}
       
     </div>
   );
