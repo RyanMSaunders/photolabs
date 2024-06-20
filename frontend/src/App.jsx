@@ -19,19 +19,13 @@ const App = () => {
     toggleSelectedPhoto(photoId);
   }
 
-  const [modalState, setModalState] = useModal(false)
+  const {modal: modalState, setModalState: setModalState, closeModal: closeModal } = useModal(false)
 
   const toggleModal = (photoId) => {
-    // const modalStateKeys = Object.keys(modalState)
-
-    // if (modalStateKeys.includes(photoId)) {
-    // setModalState(photoId)
-    // } else {
-    //   setModalState(null)
-    // }
-
     setModalState(photoId)
   }
+
+  
 
 
 
@@ -47,7 +41,7 @@ const App = () => {
       toggleModal={toggleModal}
       />
 
-      {Object.values(modalState).includes(true) && <PhotoDetailsModal />}
+      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal}/>}
       
     </div>
   );
