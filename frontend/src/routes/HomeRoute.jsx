@@ -11,6 +11,9 @@ const HomeRoute = (props) => {
       topics={props.topics}/>
       <PhotoList 
       photos={props.photos}
+      // useToggle={[props.selected, props.handleClick]}
+      selected={props.selected}
+      handleClick={props.handleClick}
       />
     </div>
   );

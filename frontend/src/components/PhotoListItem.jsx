@@ -8,11 +8,11 @@ import "../styles/PhotoListItem.scss";
 const PhotoListItem = (props) => {
   /* Insert React */
   // props = sampleDataForPhotoListItem;
-  
+
 
   return (
     <article className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton handleClick={props.handleClick} selected={props.selected} photoId={props.photo.id}/>
       <img src={props.photo.urls.regular} alt="Photo" className="photo-list__image"/>
       <div className="photo-list__user-details">
         <img src={props.photo.user.profile} alt="Profile photo" className="photo-list__user-profile"/>
