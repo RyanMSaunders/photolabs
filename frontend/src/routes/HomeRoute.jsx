@@ -17,6 +17,7 @@ const HomeRoute = (props) => {
       // useToggle={[props.selected, props.toggleFavourite]}
       selected={props.selected}
       toggleFavourite={props.toggleFavourite}
+      toggleModal={props.toggleModal}
       />
     </div>
   );

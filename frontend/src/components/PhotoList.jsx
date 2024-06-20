@@ -20,6 +20,7 @@ const PhotoList = (props) => {
         // useToggle={[props.selected, props.toggleFavourite]}
         selected={props.selected}
         toggleFavourite={props.toggleFavourite}
+        onClick={() => props.toggleModal(photoData.id)}
       />
       ))}
     </ul>
