@@ -42,7 +42,7 @@ const App = () => {
       toggleModal={toggleModal}
       />
 
-      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal} photoDetails={photos[photoKey]} />}
+      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal} photo={photos[photoKey - 1]} toggleFavourite={toggleFavourite} selected={selected}/>}
       
     </div>
   );
