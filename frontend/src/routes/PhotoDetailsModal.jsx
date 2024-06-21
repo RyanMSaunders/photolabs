@@ -7,10 +7,10 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
 
-  console.log(props.photo);
+  // console.log(props.photo);
   const similarPhotos = props.photo.similar_photos;
   const photoArray = Object.values(similarPhotos)
-  console.log('photoArray', photoArray);
+  // console.log('photoArray', photoArray);
 
 
 

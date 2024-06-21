@@ -19,6 +19,8 @@ const App = () => {
     toggleSelectedPhoto(photoId);
   }
 
+  console.log('state of selected', selected);
+
   const {modal: modalState, setModalState: setModalState, closeModal: closeModal } = useModal(false)
 
   const toggleModal = (photoId) => {

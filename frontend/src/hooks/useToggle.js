@@ -12,8 +12,6 @@ const useToggle = (initialState = {}) => {
       [key]: !prevState[key],
     }));
   };
-
-
 // If photoId doesn't exist in the state (toggle) initially, 
 // calling toggleState(photoId) for the first time will add
 // photoId to the state with a value of true (assuming it starts as undefined).
@@ -22,3 +20,14 @@ const useToggle = (initialState = {}) => {
 };
 
 export default useToggle;
+
+
+// In App.jsx, you've done well in creating a global state for the 
+  // favorite photos and passing it down to the child components. 
+  // However, it seems like you're using a custom hook useToggle to 
+  // manage the favorites state. While this is a creative approach, 
+  // it might be simpler and more straightforward to use React's useState
+  //  hook to manage the favorites state as an array of photo IDs. This way,
+  //   you can easily check if a photo is a favorite by checking if its ID is 
+  //   in the array, and you can add or remove favorites by adding or removing 
+  //   IDs from the array.
