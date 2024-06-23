@@ -16,6 +16,15 @@ const useToggle = (initialState = {}) => {
 // calling toggleState(photoId) for the first time will add
 // photoId to the state with a value of true (assuming it starts as undefined).
 
+// useToggle
+// in useToggle.js
+// Sets state (toggle) and useState (setToggle)
+// defines function that calls setToggle (toggleState)
+// exports state and function that calls setState (toggle, setToggle)
+// in App.jsx 
+// deconstructs useState, naming state selected, and function calling setState toggleSelectedPhoto
+// defines a function that calls the function that calls setState (toggleFavourite)
+
   return [toggle, toggleState];
 };
 
