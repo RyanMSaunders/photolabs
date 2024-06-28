@@ -7,8 +7,8 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useToggle from 'hooks/useToggle';
 import useModal from 'hooks/useModal';
 import useApplicationData from 'hooks/useApplicationData';
-import photos from 'mocks/photos';
-import topics from 'mocks/topics';
+// import photos from 'mocks/photos';
+// import topics from 'mocks/topics';
 
 
 // Note: Rendering a single component to build components in isolation
@@ -16,14 +16,18 @@ const App = () => {
 
 
   ///// destructuring useAppplicationData
-  const { state: state, setPhotoSelected: toggleSelectedPhoto, updateToFavPhotoIds, onClosePhotoDetailsModal: closeModal, setModal, setModalState } = useApplicationData(false)
-
+  const { state: state, setPhotoSelected, updateToFavPhotoIds, onClosePhotoDetailsModal} = useApplicationData()
+  console.log(state);
   // destructuring state for selected photos and modal from useApplicationData
-  const { toggle: selected, modal: modalState } = state;
+  // const { toggle: selected, modal: modalState } = state;
 
-  // useToggle functionality
+  const { favourites, photos, topics, selectedPhoto, displayPhotoDetails } = state;
+  console.log('photos App.jsx', photos);
+  console.log('favourites App.jsx', favourites);
+
+  // useToggle functionality  CLEANUP
   const toggleFavourite = (photoId) => {
-    toggleSelectedPhoto(photoId);
+    updateToFavPhotoIds(photoId);
   }
 
   // console.log('state of selected', selected);
@@ -31,24 +35,28 @@ const App = () => {
   // useModal functionality
 
   const toggleModal = (photoId) => {
-    setModalState(photoId)
+    setPhotoSelected(photoId)
   }
 
   /// variable used to determine photo to display for modal ///
-  const photoKey = Object.keys(modalState)
+  // const photoKey = Object.keys(modalState)
 
   return (
     <div className="App">
       <HomeRoute 
       topics={topics}
       photos={photos}
-      selected={selected}
+      // selected={selected}
+      favourited={favourites}
       toggleFavourite={toggleFavourite}
       toggleModal={toggleModal}
       />
 
-      {Object.values(modalState).includes(true) && <PhotoDetailsModal closeModal={closeModal} photo={photos[photoKey - 1]} toggleFavourite={toggleFavourite} selected={selected}/>}
+      {/* {Object.values(selectedPhoto).includes(true) && <PhotoDetailsModal closeModal={onClosePhotoDetailsModal} photo={photos[photoKey - 1]} toggleFavourite={toggleFavourite} /* selected={selected}  favourited={favourites}/>} */}
       
+      {/* // current */}
+      {!!selectedPhoto && <PhotoDetailsModal closeModal={onClosePhotoDetailsModal} photo={selectedPhoto} photos={photos} toggleFavourite={toggleFavourite} favourited={favourites}/>}
+
     </div>
   );
 };

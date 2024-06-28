@@ -16,7 +16,7 @@ function PhotoFavButton(props) {
   // const [selected, toggleFavourite] = useToggle(false);
 
   const toggleFavourite = props.toggleFavourite;
-  const selected = props.selected;
+  // const selected = props.selected;
 
   return (
     <div className="photo-list__fav-icon"> 
@@ -26,7 +26,8 @@ function PhotoFavButton(props) {
         // onClick handler that triggers toggleFavourite function with the specific photoId as argument
         onClick={() => toggleFavourite(props.photoId)}
         // Determines if the photo represented by props.photoId is selected, defaulting to false if not found
-        selected={selected[props.photoId] || false}
+        favourited={props.favourited}
+        photoId={props.photoId}
         />
       </div>
     </div>

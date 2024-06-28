@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// if selected photo is truthy modal open, if falsy modal closed
+// 
+
 const useModal = (initialState = {}) => {
   const [modal, setModal] = useState(initialState);
 

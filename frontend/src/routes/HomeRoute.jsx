@@ -9,13 +9,13 @@ const HomeRoute = (props) => {
       {/* Insert React */}
       <TopNavigation 
       topics={props.topics}
-      selected={props.selected}
+      favourited={props.favourited}
       />
       
       <PhotoList 
       photos={props.photos}
       // useToggle={[props.selected, props.toggleFavourite]}
-      selected={props.selected}
+      favourited={props.favourited}
       toggleFavourite={props.toggleFavourite}
       toggleModal={props.toggleModal}
       />

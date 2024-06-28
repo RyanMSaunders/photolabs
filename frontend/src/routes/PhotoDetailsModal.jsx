@@ -8,7 +8,8 @@ import closeSymbol from '../assets/closeSymbol.svg';
 const PhotoDetailsModal = (props) => {
 
   // console.log(props.photo);
-  const similarPhotos = props.photo.similar_photos;
+  const photo = props.photos[props.photo -1]
+  const similarPhotos = props.photos[props.photo].similar_photos;
   const photoArray = Object.values(similarPhotos)
   // console.log('photoArray', photoArray);
 
@@ -18,17 +19,17 @@ const PhotoDetailsModal = (props) => {
   return (
     <Fragment>
       <div className="photo-details-modal">
-        <button className="photo-details-modal__close-button" onClick={() => props.closeModal()}>
+        <button className="photo-details-modal__close-button" onClick={() => props.closeModal(props.photo)}>
           <img src={closeSymbol} alt="close symbol" />
         </button>
         
         <article className="photo-list__item" onClick={props.onClick}>
-          <PhotoFavButton toggleFavourite={props.toggleFavourite} selected={props.selected} photoId={props.photo.id}/>
-          <img src={props.photo.urls.regular} alt="Photo" className="photo-details-modal__image"/>
+          <PhotoFavButton toggleFavourite={props.toggleFavourite} favourited={props.favourited} photoId={photo.id}/>
+          <img src={photo.urls.regular} alt="Photo" className="photo-details-modal__image"/>
           <div className="photo-details-modal__header">
-            <img src={props.photo.user.profile} alt="Profile photo" className="photo-list__user-profile"/>
-            <p className="photo-list__user-info">{props.photo.user.name}</p>
-            <p className="photo-list__user-location">{props.photo.location.city}, {props.photo.location.country}</p>
+            <img src={photo.user.profile} alt="Profile photo" className="photo-list__user-profile"/>
+            <p className="photo-list__user-info">{photo.user.name}</p>
+            <p className="photo-list__user-location">{photo.location.city}, {photo.location.country}</p>
             </div>
         </article>
         <article>
@@ -38,7 +39,8 @@ const PhotoDetailsModal = (props) => {
             <PhotoListItem
             key={photo.id}
             photo={photo}
-            selected={props.selected}
+            // selected={props.selected}
+            favourited={props.favourited}
             toggleFavourite={props.toggleFavourite}
             // onClick={() => props.toggleModal(photo.id)}
             />
