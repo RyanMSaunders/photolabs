@@ -6,10 +6,18 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
   const photos = props.photos;
-  console.log('photolist photos', photos);
+  // console.log('photos in PhotoList.jsx', photos);
+  const photo = props.photo;
+  // console.log('photo in PhotoList.jsx', photo);
+
   // console.log(photos);
   // const handleClick = props.handleClick;
   // const useToggle= [props.selected, props.handleClick]
+
+  // const photosValues = Object.values(photos);
+  // console.log('photosValues', photosValues);
+
+
 
   return (
     //TODO When changing list of favourites state change line 22
@@ -18,7 +26,7 @@ const PhotoList = (props) => {
       <PhotoListItem
         key={photoData.id}
         photo={photoData}
-        
+       
         // useToggle={[props.selected, props.toggleFavourite]}
         // selected={props.selected}
         // favourited={props.favourited[photoData.id] || false}

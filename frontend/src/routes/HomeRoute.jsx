@@ -15,6 +15,7 @@ const HomeRoute = (props) => {
       <PhotoList 
       photos={props.photos}
       // useToggle={[props.selected, props.toggleFavourite]}
+      photo={props.photo}
       favourited={props.favourited}
       toggleFavourite={props.toggleFavourite}
       toggleModal={props.toggleModal}

@@ -1,9 +1,114 @@
 
 import { useState } from 'react';
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
-import photos from 'mocks/photos';
-import topics from 'mocks/topics';
+
+// import photos from 'mocks/photos';
+// import topics from 'mocks/topics';
+
+
+
+
+
+////////////////////////// implementing useReducer
+export const ACTIONS = {
+    FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+    FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+    SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+    SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+    SELECT_PHOTO: 'SELECT_PHOTO',
+    DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+
+
+    TOGGLE_FAVOURITE: 'TOGGLE_FAVOURITE',
+    SET_PHOTO_SELECTED: 'SET_PHOTO_SELECTED',
+    CLOSE_PHOTO_DETAILS_MODAL: 'CLOSE_PHOTO_DETAILS_MODAL'
+  }
+
+const initialState = {
+  favourites: [],
+  photos: [],
+  topics: [],
+  selectedPhoto: null,
+  displayPhotoDetails: false
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'TOGGLE_FAVOURITE':
+      const isFavourite = state.favourites.includes(action.photoId);
+      return {
+        ...state,
+        favourites: isFavourite
+          ? state.favourites.filter(id => id !== action.photoId)
+          : [...state.favourites, action.photoId]
+      };
+    case 'SET_PHOTO_SELECTED':
+      const isSelected = state.selectedPhoto === action.photoId;
+      // this is saying that the selected Photo id in state is not the same as the photoId
+      console.log('action.photoId', action.photoId, 'isSelected', isSelected, 'state.selectedPhoto', state.selectedPhoto);
+      return {
+        ...state,
+        selectedPhoto: isSelected ? null : action.photoId,
+        displayPhotoDetails: !isSelected 
+      };
+    case 'CLOSE_PHOTO_DETAILS_MODAL':
+      if (state.selectedPhoto === action.photoId) {
+        return {
+          ...state,
+          selectedPhoto: null,
+          displayPhotoDetails: false
+        };
+      }
+      return state;
+    case 'SET_PHOTO_DATA':
+      return { ...state, photos: action.payload };
+    case 'SET_TOPIC_DATA':
+      return { ...state, topics: action.payload };
+    default:
+      throw new Error(`Unknown action type: ${action.type}`);
+  }
+}
+
+
+function useApplicationData() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // console.log('state', state);
+  useEffect(() => {
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/topics')
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+  }, []);
+
+  const updateToFavPhotoIds = (photoId) => {
+    dispatch({ type: ACTIONS.TOGGLE_FAVOURITE, photoId });
+  };
+
+  const setPhotoSelected = (photoId) => {
+    dispatch({ type: ACTIONS.SET_PHOTO_SELECTED, photoId });
+  };
+
+  const onClosePhotoDetailsModal = (photoId) => {
+    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL, photoId });
+  };
+
+  return {
+    state,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal
+  };
+}
+
+export default useApplicationData;
+
+
 
 // Refactor initial state to include keys set to default values
 // Refactor properties and functions that deal with favourite to use word Favourite
@@ -86,77 +191,6 @@ import topics from 'mocks/topics';
 
 
 //   export default useApplicationData;
-
-
-
-////////////////////////// implementing useReducer
-
-
-const initialState = {
-  favourites: [],
-  photos: [...photos],
-  topics: [...topics],
-  selectedPhoto: null,
-  displayPhotoDetails: false
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'TOGGLE_FAVOURITE':
-      const isFavourite = state.favourites.includes(action.photoId);
-      return {
-        ...state,
-        favourites: isFavourite
-          ? state.favourites.filter(id => id !== action.photoId)
-          : [...state.favourites, action.photoId]
-      };
-    case 'SET_PHOTO_SELECTED':
-      const isSelected = state.selectedPhoto === action.photoId;
-      return {
-        ...state,
-        selectedPhoto: isSelected ? null : action.photoId,
-        displayPhotoDetails: !isSelected
-      };
-    case 'CLOSE_PHOTO_DETAILS_MODAL':
-      if (state.selectedPhoto === action.photoId) {
-        return {
-          ...state,
-          selectedPhoto: null,
-          displayPhotoDetails: false
-        };
-      }
-      return state;
-    default:
-      throw new Error(`Unknown action type: ${action.type}`);
-  }
-}
-
-function useApplicationData(initialStateOverride) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const updateToFavPhotoIds = (photoId) => {
-    dispatch({ type: 'TOGGLE_FAVOURITE', photoId });
-  };
-
-  const setPhotoSelected = (photoId) => {
-    dispatch({ type: 'SET_PHOTO_SELECTED', photoId });
-  };
-
-  const onClosePhotoDetailsModal = (photoId) => {
-    dispatch({ type: 'CLOSE_PHOTO_DETAILS_MODAL', photoId });
-  };
-
-  return {
-    state,
-    updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal
-  };
-}
-
-export default useApplicationData;
-
-
 
 
 

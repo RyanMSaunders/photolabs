@@ -48,6 +48,7 @@ const App = () => {
       photos={photos}
       // selected={selected}
       favourited={favourites}
+      photo={selectedPhoto}
       toggleFavourite={toggleFavourite}
       toggleModal={toggleModal}
       />

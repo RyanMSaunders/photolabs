@@ -9,6 +9,10 @@ const PhotoListItem = (props) => {
   /* Insert React */
   // props = sampleDataForPhotoListItem;
   // console.log('photoListItem photo', props.photo);
+  // console.log('props.onClick PhotoListItem.jsx', props.onClick);
+  // console.log('keys of photos PhotoListItem', props.key);
+
+// look for id here
 
   return (
     <article className="photo-list__item" onClick={props.onClick}>
