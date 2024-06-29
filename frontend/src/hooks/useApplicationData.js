@@ -19,6 +19,8 @@ export const ACTIONS = {
     SELECT_PHOTO: 'SELECT_PHOTO',
     DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
 
+    GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+
 
     TOGGLE_FAVOURITE: 'TOGGLE_FAVOURITE',
     SET_PHOTO_SELECTED: 'SET_PHOTO_SELECTED',
@@ -29,6 +31,7 @@ const initialState = {
   favourites: [],
   photos: [],
   topics: [],
+  photosByTopic: [],
   selectedPhoto: null,
   displayPhotoDetails: false
 };
@@ -65,6 +68,9 @@ function reducer(state, action) {
       return { ...state, photos: action.payload };
     case 'SET_TOPIC_DATA':
       return { ...state, topics: action.payload };
+    case 'GET_PHOTOS_BY_TOPICS':
+      console.log(action.payload);
+      return { ...state, photos: action.payload };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
@@ -86,6 +92,33 @@ function useApplicationData() {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, []);
 
+  // useEffect(() => {
+  //   fetch('/api/topics/photos/:topic_id')
+  //     .then(res => res.json())
+  //     .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchPhotosByTopic = (topicId) => {
+  //     fetch(`/api/topics/photos/${topicId}`)
+  //       .then(res => res.json())
+  //       .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
+
+  //   };
+  // }, [topicItemId]);
+
+  const fetchPhotosByTopic = async (topicId) => {
+    try {
+      const response = await fetch(`http://localhost:8001/api/topics/photos/${topicId}`);
+      const data = await response.json();
+      dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+    } catch (error) {
+      console.error('Error fetching photos:', error);
+    }
+  };
+
+
+
   const updateToFavPhotoIds = (photoId) => {
     dispatch({ type: ACTIONS.TOGGLE_FAVOURITE, photoId });
   };
@@ -102,7 +135,8 @@ function useApplicationData() {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    fetchPhotosByTopic
   };
 }
 

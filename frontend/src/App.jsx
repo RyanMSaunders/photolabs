@@ -16,7 +16,7 @@ const App = () => {
 
 
   ///// destructuring useAppplicationData
-  const { state: state, setPhotoSelected, updateToFavPhotoIds, onClosePhotoDetailsModal} = useApplicationData()
+  const { state: state, setPhotoSelected, updateToFavPhotoIds, onClosePhotoDetailsModal, fetchPhotosByTopic} = useApplicationData()
   console.log(state);
   // destructuring state for selected photos and modal from useApplicationData
   // const { toggle: selected, modal: modalState } = state;
@@ -38,6 +38,8 @@ const App = () => {
     setPhotoSelected(photoId)
   }
 
+  
+
   /// variable used to determine photo to display for modal ///
   // const photoKey = Object.keys(modalState)
 
@@ -51,6 +53,7 @@ const App = () => {
       photo={selectedPhoto}
       toggleFavourite={toggleFavourite}
       toggleModal={toggleModal}
+      fetchPhotosByTopic={fetchPhotosByTopic}
       />
 
       {/* {Object.values(selectedPhoto).includes(true) && <PhotoDetailsModal closeModal={onClosePhotoDetailsModal} photo={photos[photoKey - 1]} toggleFavourite={toggleFavourite} /* selected={selected}  favourited={favourites}/>} */}

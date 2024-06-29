@@ -15,6 +15,7 @@ const TopicList = (props) => {
         < TopicListItem 
           key={topicItem.id}
           topicItem={topicItem}
+          fetchPhotosByTopic={props.fetchPhotosByTopic}
         />
       ))}
     </div>
