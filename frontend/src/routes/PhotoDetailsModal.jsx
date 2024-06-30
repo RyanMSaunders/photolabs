@@ -6,22 +6,13 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
-  // more explicit in naming
-// props.photo 
-// photo variable selectedPhoto
 
-  // console.log(props.photo);
   const photo = props.photos.find((photo) => photo.id === props.photo); 
-  console.log('props.photos in PhotoDetailsModal', props.photos);
-  console.log('photo in PhotoDetailsModal', photo);
-  console.log('props.photo in PhotoDetailsModal', props.photo);
+  
   const similarPhotos = photo['similar_photos'];
-  console.log('similar_photos', similarPhotos);
+ 
   const photoArray = Object.values(similarPhotos)
-  // console.log('photoArray', photoArray);
-
-
-
+  
 
   return (
     <Fragment>

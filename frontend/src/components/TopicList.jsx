@@ -6,7 +6,6 @@ import "../styles/TopicList.scss";
 
 const TopicList = (props) => {
   const topics = props.topics;
-  // console.log("these are topics", topics);
   
   return (
     <div className="top-nav-bar__topic-list">

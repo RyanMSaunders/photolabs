@@ -6,17 +6,10 @@ import "../styles/PhotoListItem.scss";
 
 
 const PhotoListItem = (props) => {
-  /* Insert React */
-  // props = sampleDataForPhotoListItem;
-  // console.log('photoListItem photo', props.photo);
-  // console.log('props.onClick PhotoListItem.jsx', props.onClick);
-  // console.log('keys of photos PhotoListItem', props.key);
-
-// look for id here
-
+  
   return (
     <article className="photo-list__item" onClick={props.onClick}>
-      <PhotoFavButton toggleFavourite={props.toggleFavourite} /* selected={props.selected} */ favourited={props.favourited} photoId={props.photo.id}/>
+      <PhotoFavButton toggleFavourite={props.toggleFavourite}  favourited={props.favourited} photoId={props.photo.id}/>
       <img src={props.photo.urls.regular} alt="Photo" className="photo-list__image"/>
       <div className="photo-list__user-details">
         <img src={props.photo.user.profile} alt="Profile photo" className="photo-list__user-profile"/>
