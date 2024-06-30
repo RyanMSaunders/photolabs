@@ -4,6 +4,7 @@ import './App.scss';
 
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import DarkMode from 'components/DarkMode/DarkMode';
 import useApplicationData from 'hooks/useApplicationData';
 
 
